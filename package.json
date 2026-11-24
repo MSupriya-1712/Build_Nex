@@ -1,0 +1,21 @@
+{
+  "name": "buildnex-platform",
+  "version": "1.0.0",
+  "description": "BuildNex – Smart Construction Management Platform",
+  "private": true,
+  "scripts": {
+    "build": "npm run build --prefix backend && npm run build --prefix frontend",
+    "start:backend": "npm start --prefix backend",
+    "start:frontend": "npm run dev --prefix frontend"
+  },
+  "keywords": [
+    "construction-management",
+    "saas",
+    "react",
+    "typescript",
+    "express",
+    "mongodb",
+    "tailwind"
+  ],
+  "author": "BuildNex Team"
+}
