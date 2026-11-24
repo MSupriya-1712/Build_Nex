@@ -12,7 +12,9 @@ import {
 } from './sampleData';
 import { realtimeBus } from '../services/realtimeBus';
 
-const DB_DIR = path.resolve(__dirname, '../../data');
+const DB_DIR = process.env.VERCEL
+  ? path.join('/tmp', 'buildnex-data')
+  : path.resolve(__dirname, '../../data');
 const DB_FILE = path.join(DB_DIR, 'buildnex_live_database.json');
 
 const clone = <T>(val: T): T => JSON.parse(JSON.stringify(val));

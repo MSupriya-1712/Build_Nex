@@ -47,7 +47,7 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
 
   // Real-time Server-Sent Events (SSE) Stream
   useEffect(() => {
-    const apiBase = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000/api';
+    const apiBase = import.meta.env.VITE_API_BASE_URL || (import.meta.env.PROD ? '/api' : 'http://localhost:5000/api');
     let eventSource: EventSource | null = null;
     let reconnectTimer: any = null;
 

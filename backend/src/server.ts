@@ -30,6 +30,14 @@ app.use(
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// Path normalization: ensure requests forwarded without /api prefix match /api/* routes
+app.use((req, _res, next) => {
+  if (req.url && !req.url.startsWith('/api')) {
+    req.url = `/api${req.url === '/' ? '' : req.url}`;
+  }
+  next();
+});
+
 // Friendly Root & /api route with visual status dashboard for browsers
 app.get(['/', '/api', '/api/docs'], (req, res) => {
   const dbStatus = getDbStatus();
@@ -191,6 +199,14 @@ const startServer = async () => {
   });
 };
 
-startServer();
+// Only bind port in standalone Node environments; Vercel Serverless handles invocations directly
+if (!process.env.VERCEL && !process.env.AWS_LAMBDA_FUNCTION_NAME) {
+  startServer();
+} else {
+  // In serverless environment, connect DB asynchronously on cold start
+  connectDB().catch(() => {
+    console.log(`[MongoDB] Running in serverless storage mode`);
+  });
+}
 
 export default app;

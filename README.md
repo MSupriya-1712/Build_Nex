@@ -245,3 +245,5 @@ No registration is required to explore all features. If prompted or presenting t
 - **Role:** Lead Project Director & PMP
 - **Default Mode:** Standalone Demo Mode (with automatic live API toggle if backend is started)
 - **Reset Button:** Available in **Settings** or the **Top Bar** dropdown to refresh realistic project metrics at any point.
+#   B u i l d _ N e x  
+ 
